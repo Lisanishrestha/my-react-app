@@ -33,6 +33,7 @@ class App extends Component {
     );
     const LogInComponent = () => (<LogIn user={this.state.currentUser} mockLogIn={this.mockLogIn} />)  // Pass props to "LogIn" component
 
+    // Important: Include the "basename" in Router
     return (
       <Router basename="/bank-of-react-example-code-gh-pages">
         <div>
