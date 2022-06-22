@@ -1,6 +1,7 @@
 // src/components/Debits.js
 
 const Debits = (props) => {
+  // Create the list of Debit items
 	let debitsView = () => {
     const { debits } = props;
     return debits.map((debit) => {
@@ -8,10 +9,13 @@ const Debits = (props) => {
       return <li key={debit.id}>{debit.amount} {debit.description} {date}</li>
     }) 
   }
+  // Render the list of Debit items and a form to input new Debit item
   return (
     <div>
       <h1>Debits</h1>
+
       {debitsView()}
+
       <form onSubmit={props.addDebit}>
         <input type="text" name="description" />
         <input type="number" name="amount" />

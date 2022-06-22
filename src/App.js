@@ -2,9 +2,12 @@
 
 import React, {Component} from 'react';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
+
+// Import other components
 import Home from './components/Home';
 import UserProfile from './components/UserProfile';
 import LogIn from './components/Login';
+import Credits from './components/Credits';
 
 class App extends Component {
   constructor() {  // Create and initialize state
@@ -27,6 +30,7 @@ class App extends Component {
 
   // Create Routes and React elements to be rendered using React components
   render() {  
+    // Create React elements
     const HomeComponent = () => (<Home accountBalance={this.state.accountBalance}/>);
     const UserProfileComponent = () => (
       <UserProfile userName={this.state.currentUser.userName} memberSince={this.state.currentUser.memberSince}  />
@@ -40,6 +44,7 @@ class App extends Component {
           <Route exact path="/" render={HomeComponent}/>
           <Route exact path="/userProfile" render={UserProfileComponent}/>
           <Route exact path="/login" render={LogInComponent}/>
+          <Route exact path="/credits" render={Credits}/>
         </div>
       </Router>
     );

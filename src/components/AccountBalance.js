@@ -3,6 +3,7 @@
 import React, {Component} from 'react';
 
 class AccountBalance extends Component {
+  // Display account balance
   render() {
     return (
       <div>
