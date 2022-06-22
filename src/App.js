@@ -10,10 +10,10 @@ class App extends Component {
   constructor() {  // Create and initialize state
     super(); 
     this.state = {
-      accountBalance: 14568.27,
+      accountBalance: 1234567.89,
       currentUser: {
         userName: 'Joe Smith',
-        memberSince: '07/23/96',
+        memberSince: '11/22/99',
       }
     }
   }
