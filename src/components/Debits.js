@@ -2,7 +2,7 @@
 
 const Debits = (props) => {
   // Create the list of Debit items
-	let debitsView = () => {
+  let debitsView = () => {
     const { debits } = props;
     return debits.map((debit) => {
       let date = debit.date.slice(0,10);
