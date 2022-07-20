@@ -1,3 +1,8 @@
+/*==================================================
+src/index.js
+
+This file renders the top-level component App which contains all components of the app).
+==================================================*/
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
@@ -10,6 +15,7 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById('root')
 );
+// Note: In above, StrictMode is a tool for highlighting potential problems in an application. 
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

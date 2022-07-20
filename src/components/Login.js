@@ -1,36 +1,38 @@
-// src/components/Login.js
-// The LogIn component is used to demonstrate the use of Redirect.
+/*==================================================
+src/components/Login.js
 
-import React, { Component } from 'react'
-import { Redirect } from 'react-router-dom'
+The LogIn component is used to demonstrate the use of Redirect.
+Note: You don't need to work on this file for the Assignment.
+==================================================*/
+import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 class LogIn extends Component {
-  constructor () {  // Create and initialize state
-    super()
+  constructor (props) {  // Create and initialize state
+    super(props)
     this.state = {
       user: {
-        userName: '',
+        //userName: '',
+        userName: this.props.user.userName,  // Initialize userName using props input (currentUser in App.js)
         password: ''
       },
-      redirect: false
+      redirect: false  // Redirect property used to trigger Redirect
     }
   }
 
-  // When the user name input is changed, capture the input and update the state (user.userName)
+  // When User Name input is changed, capture the new input value and update state
   handleChange = (e) => {
-    const updatedUser = {...this.state.user}
-    const inputField = e.target.name
-    const inputValue = e.target.value
-    updatedUser[inputField] = inputValue
-
-    this.setState({user: updatedUser})
+    const updatedUser = {...this.state.user}  // Create an object for state
+    updatedUser.userName = e.target.value  // Set object's userName to the new input value
+    this.setState({user: updatedUser})  // Update state with object values
   }
 
   // When user clicked "Log In" button, store user data and then redirect to "User Profile" page
   handleSubmit = (e) => {
     e.preventDefault()
-    this.props.mockLogIn(this.state.user)
-    this.setState({redirect: true})
+    this.props.mockLogIn(this.state.user)  // Update state in the top-level component (App.js)
+    this.setState({redirect: true})  // Update state to trigger Redirect
   }
   
   render () {
@@ -46,15 +48,17 @@ class LogIn extends Component {
         
         <form onSubmit={this.handleSubmit}>
           <div>
-            <label htmlFor="userName">User Name</label>
-            <input type="text" name="userName" onChange={this.handleChange} value={this.state.user.userName} />
+            <label>User Name</label>
+            <input type="text" name="userName" defaultValue={this.props.user.userName} onChange={this.handleChange} />
           </div>
           <div>
-            <label htmlFor="password">Password</label>
+            <label>Password</label>
             <input type="password" name="password" />
           </div>
           <button>Log In</button>
-        </form>                  
+        </form>  
+        <br/>
+        <Link to="/">Return to Home</Link>
       </div>
     )
   }

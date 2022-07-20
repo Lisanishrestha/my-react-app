@@ -1,6 +1,8 @@
-// src/components/Home.js
-// The Home component is used to demonstrate the use of Link.
+/*==================================================
+src/components/Home.js
 
+The Home component is used to demonstrate the use of Link.
+==================================================*/
 import React, {Component} from 'react';
 import AccountBalance from './AccountBalance';
 import {Link} from 'react-router-dom';
@@ -19,7 +21,7 @@ class Home extends Component {
         <br/>
         <Link to="/credits">Credits (to be implemented in the Assignment)</Link>
         <br/>
-        <Link to="">Debits (to be implemented in the Assignment)</Link>
+        <Link to="/debits">Debits (to be implemented in the Assignment)</Link>
         <br/><br/>
         <AccountBalance accountBalance={this.props.accountBalance}/>
       </div>

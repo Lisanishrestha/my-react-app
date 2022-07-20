@@ -1,13 +1,15 @@
 # bank-of-react-example-code-gh-pages
-This repository contains a React application example on how to implement client-side routing with React Router and its components including Route, Router, Switch, Link, and Redirect.
+This repository contains a React application example on how to implement client-side routing with React Router and its components including Route, Router Link, and Redirect.
 
 ### Use the following commands to run the application
 
-Note: This application uses React Router version 5.
 - First, run this command to install dependencies:
-```npm install react-router-dom@5.3.0 react-router@5.2.1```
+```npm install```
 - Next, run this command to start the React application:
 ```npm start```
+
+Note: This application uses React Router version 5. Optionally, you can run the following command to install React Router version 5 dependencies:
+```npm install react-router-dom@5.3.0 react-router@5.2.1```
 
 ### Live Link 
 [Website link](https://johnnylaicode.github.io/bank-of-react-example-code-gh-pages/)
@@ -25,7 +27,7 @@ Note: This application uses React Router version 5.
 4. Go into the "my-react-app" folder.
 5. All the following steps can be performed inside the "my-react-app" folder. 
 
-#### 3. Add "basename" in Router Tag
+#### 3. Add "basename" to Router Tag in "App.js" File
 1. In the `App.js` file (see line 38), located inside the `src` folder, make sure that you add the `basename` path in the `<Router>` tag using the following format: `<Router basename="/[repository name]">`
 2. For the "my-react-app" application, it should be: `<Router basename="/my-react-app">`
 
@@ -33,7 +35,7 @@ Note: This application uses React Router version 5.
 1. Install the `gh-pages` package on your local machine by entering the command: `npm install gh-pages --save-dev`
 2. After installation, it automatically adds the `gh-pages` version number in the "dependencies" section of the `package.json` file.
 
-#### 5. Add "homepage" Property
+#### 5. Add "homepage" Property in "package.json" File
 1. In the `package.json` file (see line 4), add a `homepage` property using the following format: `https://[your GitHub username].github.io/[repository name]`
 2. For the "my-react-app" application, it should be:`"homepage": "https://[your GitHub username].github.io/my-react-app/",` 
     ```
@@ -45,7 +47,7 @@ Note: This application uses React Router version 5.
     }
     ```
 
-#### 6. Add Deployment Scripts
+#### 6. Add Deployment Scripts in "package.json" File
 1. In the `package.json` file (see lines 19 and 20), add `predeploy` and `deploy` properties to the "scripts" section as follows:
     ```
     "scripts": {
