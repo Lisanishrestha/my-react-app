@@ -1,4 +1,4 @@
-/*==================================================
+/*=================================================
 src/components/Debits.js
 The Debits component contains information for Debits page view.
 Note: You need to work on this file for the Assignment.
