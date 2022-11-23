@@ -1,4 +1,4 @@
-# bank-of-react-example-code-gh-pages
+# bank-of-react-code-gh-pages
 
 ### Live Link 
 [Website link](https://lisanishrestha.github.io/my-react-app/)
