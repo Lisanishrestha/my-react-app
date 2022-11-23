@@ -22,12 +22,12 @@ class App extends Component {
 
     this.state = {
       accountBalance: 0,
-      currentUser: {
-        userName: 'joe_shmo',
-        memberSince: '07/23/96',
-      },
       debits: [],       // debits array
-      credits: []       // credits array
+      credits: [],     // credits array
+      currentUser: {
+        userName: 'Joe Smith',
+        memberSince: '11/22/99',
+      }
     } 
   }
 
@@ -77,19 +77,21 @@ class App extends Component {
 
   // aynchronous component
   async componentDidMount() {
-    let debits = await axios.get("https://moj-api.herokuapp.com/debits")
-    let credits = await axios.get("https://moj-api.herokuapp.com/credits")
+    let linkToAPI_Credit = "https://moj-api.herokuapp.com/credits"; 
+    let linkToAPI_Debit = "https://moj-api.herokuapp.com/debits";
+    let debits = await axios.get(linkToAPI_Debit)
+    let credits = await axios.get(linkToAPI_Credit)
    
     // get data from API response
     debits = debits.data
     credits = credits.data
 
-    let debitSum = 0;
-    let creditSum = 0;
-    debits.forEach((debit) => { debitSum += debit.amount})
-    credits.forEach((credit) => { creditSum += credit.amount})
+    let totaldebit = 0;
+    let totalcredit  = 0;
+    debits.forEach((debit) => { totaldebit += debit.amount})
+    credits.forEach((credit) => { totalcredit += credit.amount})
 
-    let accountBalance = creditSum - debitSum;
+    let accountBalance = totalcredit- totaldebit;
     this.setState({debits, credits, accountBalance});
   }
 
