@@ -34,7 +34,6 @@ class LogIn extends Component {
     this.props.mockLogIn(this.state.user)  // Update state in the top-level component (App.js)
     this.setState({redirect: true})  // Update state to trigger Redirect
   }
-  
   render () {
     // Redirect to "User Profile" page when "Log In" button is clicked
     if (this.state.redirect) {  
@@ -48,14 +47,14 @@ class LogIn extends Component {
         
         <form onSubmit={this.handleSubmit}>
           <div>
-            <label>User Name</label>
+            <label><b>User Nam</b>e</label>
             <input type="text" name="userName" defaultValue={this.props.user.userName} onChange={this.handleChange} />
           </div>
           <div>
-            <label>Password</label>
+            <label><b>Password</b></label>
             <input type="password" name="password" />
           </div>
-          <button>Log In</button>
+          <button> Log In </button>
         </form>  
         <br/>
         <Link to="/">Return to Home</Link>
