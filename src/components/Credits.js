@@ -55,11 +55,11 @@ class CreditsComponent extends Component {
         <AccountBalance accountBalance={this.props.accountBalance}/>
         <form onSubmit={this.handleSubmit}>
             <div>
-            <label htmlFor="description"> Description: </label>
-                <input type="text" name="description" onChange={this.handleChange}/>
+            <label htmlFor="description"> <b>Description:</b> </label>
+                <input type="text" class="block w-1/4 border red" name="description" onChange={this.handleChange}/>
             </div>
             <div>
-            <label htmlFor="amount"> Amount: </label>
+            <label htmlFor="amount"><b>Amount:</b>  </label>
                 <input type="text" name="amount" onChange={this.handleChange}/>
             </div>
             <button>Submit</button>

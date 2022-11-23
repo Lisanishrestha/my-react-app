@@ -7,6 +7,11 @@
   height: 40vmin;
   pointer-events: none;
 }
+.App-lable { 
+  text-align: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+}
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {

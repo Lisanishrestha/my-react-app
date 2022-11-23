@@ -65,11 +65,11 @@ class DebitsComponent extends Component {
         <h1></h1>
         <form onSubmit={this.handleSubmit}>
           <div>
-          <label htmlFor="description"> Description: </label>
+          <label htmlFor="description"> <b>Description:</b> </label>
               <input type="text" name="description" onChange={this.handleChange}/>
           </div>
           <div>
-          <label htmlFor="amount"> Amount: </label>
+          <label htmlFor="amount"> <b>Amount:</b> </label>
               <input type="text" name="amount" onChange={this.handleChange}/>
           </div>
           <button>Submit</button>
