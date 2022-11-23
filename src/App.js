@@ -13,50 +13,112 @@ import UserProfile from './components/UserProfile';
 import LogIn from './components/Login';
 import Credits from './components/Credits';
 import Debits from './components/Debits';
-
+import axios from "axios"
+import './App.css';
 class App extends Component {
-  constructor() {  // Create and initialize state
-    super(); 
+
+  constructor() {
+    super();
+
     this.state = {
-      accountBalance: 1234567.89,
-      debitList: [],
+      accountBalance: 0,
       currentUser: {
-        userName: 'Joe Smith',
-        memberSince: '11/22/99',
-      }
-    }
+        userName: 'joe_shmo',
+        memberSince: '07/23/96',
+      },
+      debits: [],       // debits array
+      credits: []       // credits array
+    } 
   }
 
-  // Update state's currentUser (userName) after "Log In" button is clicked
-  mockLogIn = (logInInfo) => {  
+  mockLogIn = (logInInfo) => {
     const newUser = {...this.state.currentUser}
     newUser.userName = logInInfo.userName
     this.setState({currentUser: newUser})
+    this.componentDidMount()
+  }
+  
+  // create new debit and add to array
+  addDebit = (e) => {
+    let newDebits = [...this.state.debits]
+
+    let addMe = {
+      'id': e.id,
+      'amount': e.amount,
+      'date': e.date,
+      'description': e.description
+    };
+
+    newDebits.push(addMe);
+    let addAmount = Number(this.state.accountBalance) - Number(e.amount);
+    
+    this.setState({debits: newDebits})
+    this.setState({accountBalance: addAmount})
+  }
+  
+  // create new credit and add to array
+  addCredit = (e) => {
+    let newCredits = [...this.state.credits]
+
+    let addMe = {
+      'id': e.id,
+      'amount': e.amount,
+      'date': e.date,
+      'description': e.description
+    };
+
+    newCredits.push(addMe);
+    
+    let addAmount = Number(this.state.accountBalance) + Number(e.amount);
+
+    this.setState({credits: newCredits})
+    this.setState({accountBalance: addAmount})
   }
 
-  // Create Routes and React elements to be rendered using React components
-  render() {  
-    // Create React elements and pass input props to components
-    const HomeComponent = () => (<Home accountBalance={this.state.accountBalance} />);
+  // aynchronous component
+  async componentDidMount() {
+    let debits = await axios.get("https://moj-api.herokuapp.com/debits")
+    let credits = await axios.get("https://moj-api.herokuapp.com/credits")
+   
+    // get data from API response
+    debits = debits.data
+    credits = credits.data
+
+    let debitSum = 0;
+    let creditSum = 0;
+    debits.forEach((debit) => { debitSum += debit.amount})
+    credits.forEach((credit) => { creditSum += credit.amount})
+
+    let accountBalance = creditSum - debitSum;
+    this.setState({debits, credits, accountBalance});
+  }
+
+  render() {
+
+    const {debits} = this.state;
+    const {credits} = this.state;
+
+    const HomeComponent = () => (<Home accountBalance={this.state.accountBalance}/>);
     const UserProfileComponent = () => (
-      <UserProfile userName={this.state.currentUser.userName} memberSince={this.state.currentUser.memberSince} />
+        <UserProfile userName={this.state.currentUser.userName} memberSince={this.state.currentUser.memberSince}  accountBalance={this.state.accountBalance}/>
     );
-    const LogInComponent = () => (<LogIn user={this.state.currentUser} mockLogIn={this.mockLogIn} />)
-    const DebitsComponent = () => (<Debits debits={this.state.debitList} />) 
+    const LogInComponent = () => (<LogIn user={this.state.currentUser} mockLogIn={this.mockLogIn} />);
+    const DebitsComponent = () => (<Debits addDebit={this.addDebit} debits={debits} accountBalance={this.state.accountBalance}/>)
+    const CreditsComponent = () => (<Credits addCredit={this.addCredit} credits={credits} accountBalance={this.state.accountBalance}/>)
 
-    // Important: Include the "basename" in Router, which is needed for deploying the React app to GitHub Pages
     return (
-      <Router basename="/my-react-app">
-        <div>
-          <Route exact path="/" render={HomeComponent}/>
-          <Route exact path="/userProfile" render={UserProfileComponent}/>
-          <Route exact path="/login" render={LogInComponent}/>
-          <Route exact path="/credits" render={Credits}/>
-          <Route exact path="/debits" render={DebitsComponent}/>
-        </div>
-      </Router>
+        <Router basename="/my-react-app">
+          <div className="App">
+            <Route exact path="/" render={HomeComponent}/>
+            <Route exact path="/Debits" render={DebitsComponent}/>
+            <Route exact path="/Credits" render={CreditsComponent}/>
+            <Route exact path="/userProfile" render={UserProfileComponent}/>
+            <Route exact path="/login" render={LogInComponent}/>
+          </div>
+        </Router>
     );
   }
+
 }
 
 export default App;
